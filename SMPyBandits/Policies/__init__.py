@@ -122,6 +122,11 @@ from .SparseWrapper import SparseWrapper  # generic wrapper class
 # --- Clopper-Pearson UCB
 from .CPUCB import CPUCB        # Different indexes
 
+
+# --- RBE policies
+from .RBE import RBE
+
+
 # --- MOSS index policy
 from .MOSS import MOSS
 from .MOSSH import MOSSH  # Knowing the horizon
