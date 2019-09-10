@@ -54,7 +54,7 @@ class EpsilonGreedy(BasePolicy):
         else:  # Proba 1 - epsilon : exploit
             # Uniform choice among the best arms
             biased_means = self.rewards / (1 + self.pulls)
-            return np.argmax(biased_means)
+            return np.random.choice(np.nonzero(biased_means == np.max(biased_means))[0])
 
     def choiceWithRank(self, rank=1):
         """With a probability of epsilon, explore (uniform choice), otherwhise exploit with the rank, based on just accumulated *rewards* (not empirical mean rewards)."""
