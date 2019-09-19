@@ -26,6 +26,10 @@ class RBE(IndexPolicy):
         super(RBE, self).__init__(nbArms, **kwargs)
         self.last_t = np.zeros(nbArms)
 
+    def startGame(self):
+        super(RBE, self).startGame()
+        self.last_t.fill(0)
+
     def computeIndex(self, arm):
         r""" Compute the current index, at time t and after :math:`N_k(t)` pulls of arm k:
 
