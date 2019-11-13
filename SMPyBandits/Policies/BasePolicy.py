@@ -24,7 +24,7 @@ class BasePolicy(object):
         self.amplitude = amplitude  #: Larger values for rewards
         # Internal memory
         self.t = -1  #: Internal time
-        self.pulls = np.zeros(nbArms, dtype=int)  #: Number of pulls of each arms
+        self.pulls = np.zeros(nbArms)  #: Number of pulls of each arms
         self.rewards = np.zeros(nbArms)  #: Cumulated rewards of each arms
 
     def __str__(self):

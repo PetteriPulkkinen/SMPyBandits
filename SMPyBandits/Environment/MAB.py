@@ -838,8 +838,9 @@ class PieceWiseStationaryMAB(MAB):
 
         print("\n\n ==> Creating the dynamic arms ...")  # DEBUG
 
+        # This need to be fixed later, now it works for exponential families
         self.listOfArms = [
-            [self.arm_type(mean) for mean in means]
+            [self.arm_type(1/mean, trunc=float("+inf")) for mean in means]
             for means in self.listOfMeans
         ]
 

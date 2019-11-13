@@ -70,5 +70,5 @@ class Gamma(Posterior):
     def update(self, obs):
         """Add an observation: increase k by k0, and lmbda by obs (do not have to be normalized)."""
         # print("Info: calling Gamma.update() with obs = {} ...".format(obs))  # DEBUG
-        self.k += self._k
-        self.lmbda += obs
+        self.k += obs
+        self.lmbda += 1

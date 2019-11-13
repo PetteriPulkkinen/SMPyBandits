@@ -16,3 +16,4 @@ from .Beta import Beta
 from .DiscountedBeta import DiscountedBeta
 from .Gamma import Gamma
 from .Gauss import Gauss
+from .DiscountedGamma import DiscountedGamma

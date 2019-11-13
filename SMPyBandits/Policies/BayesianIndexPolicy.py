@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """ Basic Bayesian index policy. By default, it uses a Beta posterior. """
 from __future__ import division, print_function  # Python 2 compatibility
+import numpy as np
 
 __author__ = "Lilian Besson"
 __version__ = "0.9"
@@ -57,7 +58,8 @@ class BayesianIndexPolicy(IndexPolicy):
 
     def getReward(self, arm, reward):
         """ Update the posterior on each arm, with the normalized reward."""
-        self.posterior[arm].update((reward - self.lower) / self.amplitude)
+        for a, r in zip(np.array([arm]).flatten(), np.array([reward]).flatten()):
+            self.posterior[a].update((r - self.lower) / self.amplitude)
         self.t += 1
 
     def computeIndex(self, arm):

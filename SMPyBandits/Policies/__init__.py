@@ -104,6 +104,13 @@ from .UCBmin import UCBmin      # Different indexes
 from .UCBplus import UCBplus    # Different indexes
 from .UCBrandomInit import UCBrandomInit
 
+# --- Petteri Pulkkinen adaptive policies
+from .AdaUCB import AdaUCB
+from .AdaRBE import AdaRBE
+from .AdaUCBVT import AdaUCBVT
+from .AdaKLUCB import AdaKLUCB
+from .DEGreedy import DEGreedy
+
 # --- UCB with successive eliminations
 from .UCBimproved import UCBimproved          # Different indexes
 

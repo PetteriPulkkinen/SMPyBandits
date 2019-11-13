@@ -7,6 +7,7 @@
 .. warning:: This is still highly experimental!
 """
 from __future__ import division, print_function  # Python 2 compatibility
+import numpy as np
 
 __author__ = "Lilian Besson"
 __version__ = "0.9"
@@ -67,9 +68,12 @@ class DiscountedBayesianIndexPolicy(BayesianIndexPolicy):
 
     def getReward(self, arm, reward):
         """ Update the posterior on each arm, with the normalized reward."""
-        self.posterior[arm].update((reward - self.lower) / self.amplitude)
-        # DONE we should update the other posterior with "no observation"
+        arms = np.array([arm]).flatten()
+        rewards = np.array([reward]).flatten()
+        for a, r in zip(arms, rewards):
+            self.posterior[a].update((r - self.lower) / self.amplitude)
+
         for otherArm in range(self.nbArms):
-            if otherArm != arm:
-                self.posterior[arm].discount()
+            if otherArm not in arms:
+                self.posterior[otherArm].discount()
         self.t += 1

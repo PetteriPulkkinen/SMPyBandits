@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 r""" The Discounted-UCB index policy, with a discount factor of :math:`\gamma\in(0,1]`.
 
 - Reference: ["On Upper-Confidence Bound Policies for Non-Stationary Bandit Problems", by A.Garivier & E.Moulines, ALT 2011](https://arxiv.org/pdf/0805.3415.pdf)
@@ -95,13 +95,11 @@ class DiscountedUCB(UCBalpha):
             return float('+inf')
         else:
             n_t_gamma = np.sum(self.discounted_pulls)
-            assert n_t_gamma <= self.t, "Error: n_t_gamma was computed as {:.3g} but should be < t = {:.3g}...".format(n_t_gamma, self.t)  # DEBUG
             return (self.discounted_rewards[arm] / self.discounted_pulls[arm]) + sqrt((self.alpha * log(n_t_gamma)) / (2 * self.discounted_pulls[arm]))
 
     def computeAllIndex(self):
         """ Compute the current indexes for all arms, in a vectorized manner."""
         n_t_gamma = np.sum(self.discounted_pulls)
-        assert n_t_gamma <= self.t, "Error: n_t_gamma was computed as {:.3g} but should be < t = {:.3g}...".format(n_t_gamma, self.t)  # DEBUG
         indexes = (self.discounted_rewards / self.discounted_pulls) + np.sqrt((self.alpha * np.log(n_t_gamma)) / (2 * self.discounted_pulls))
         indexes[self.discounted_pulls < 1] = float('+inf')
         self.index[:] = indexes

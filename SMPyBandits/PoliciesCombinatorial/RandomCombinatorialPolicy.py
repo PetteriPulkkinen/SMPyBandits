@@ -14,8 +14,9 @@ class RandomCombinatorialPolicy(CombinatorialPolicy):
 
     def choice(self):
         """ Choose an arm."""
-        if np.random.rand() < self.epsilon:
-            return np.random.randint(low=0, high=self.opt_algorithm.n_super_arms)
+        if np.random.rand() < self.mab_algorithm.epsilon:
+            idx = np.random.randint(low=0, high=self.opt_algorithm.n_super_arms)
+            return self.opt_algorithm.actions[idx], idx
         else:
-            belief = self.rewards / self.pulls
+            belief = self.mab_algorithm.rewards / (1 + self.mab_algorithm.pulls)
             return self.opt_algorithm.find_combination(belief)
